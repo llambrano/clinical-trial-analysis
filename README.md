@@ -38,9 +38,10 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 
 * Look across all previously generated figures and tables and write at least three observations or inferences that can be made from the data. Include these observations at the top of notebook. [view solution](#10)
 
----
 <a name="solution"></a>
 > **Solution**
+
+---
 
 <a name="01"></a>
 **Remove mouse ID with duplicate time points**
@@ -87,6 +88,8 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 
 [Back to tasks](#intro) or [Back to the top](#top) 
 
+---
+
 <a name="02"></a>
 **Summary statistics table**
 
@@ -124,6 +127,8 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 
 [Back to tasks](#intro) or [Back to the top](#top) 
 
+---
+
 <a name="03"></a>
 **Number of total mice for each treatment regimen (graph)**
 
@@ -146,6 +151,8 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 
 [Back to tasks](#intro) or [Back to the top](#top) 
 
+---
+
 <a name="04"></a>
 **Distribution of female or male mice in the study (graph)**
 
@@ -167,4 +174,59 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 </details>
 
 [Back to tasks](#intro) or [Back to the top](#top) 
+
+---
+
+<a name="05"></a>
+**Determine if there are any potential outliers across all four treatment regimens. (graph)**
+
+![remove duplicated data](images/steps/05.png)
+
+<details><summary>click here to view steps</summary>
+
+1. xxx
+    
+    ```
+    xxx
+    ```
+
+    [Back to output](#05)
+</details>
+
+[Back to tasks](#intro) or [Back to the top](#top) 
+
+---
+
+<a name="06"></a>
+**Time point versus tumor volume for a mouse treated with Capomulin (graph)**
+
+![remove duplicated data](images/steps/06.png)
+
+<details><summary>click here to view steps</summary>
+
+1. Identify the mice treated with Capomulin and select one
+    
+    ```
+    capomulin_treatment = mouse_study_results.loc[mouse_study_results['Drug Regimen'] == 'Capomulin']
+    i557_mouse = capomulin_treatment.loc[capomulin_treatment["Mouse ID"] == "i557"]
+
+    ```
+2. Plot graph 
+
+    ```
+    i557_mouse_timepoints = i557_mouse['Timepoint'].to_list()
+    i557_mouse_tumor_vol = i557_mouse['Tumor Volume (mm3)'].to_list()
+    plt.plot(i557_mouse_timepoints, i557_mouse_tumor_vol, color='orange', marker='^')
+    plt.title('Tumor Volume for i557 During Trial')
+    plt.xlabel('Timepoints')
+    plt.ylabel('Tumor Volume (mm3)')
+    plt.show()
+    ```
+
+    [Back to output](#06)
+</details>
+
+[Back to tasks](#intro) or [Back to the top](#top) 
+
+---
 
