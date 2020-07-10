@@ -26,9 +26,7 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 
 * Generate a pie plot using both Pandas's DataFrame.plot() and Matplotlib's pyplot that shows the distribution of female or male mice in the study. [view solution](#04)
 
-* Calculate the final tumor volume of each mouse across four of the most promising treatment regimens: Capomulin, Ramicane, Infubinol, and Ceftamin. Calculate the quartiles and IQR and quantitatively determine if there are any potential outliers across all four treatment regimens. [view solution](#05)
-
-* Using Matplotlib, generate a box and whisker plot of the final tumor volume for all four treatment regimens and highlight any potential outliers in the plot by changing their color and style. [view solution](#06)
+* Calculate the final tumor volume of each mouse across four of the most promising treatment regimens: Capomulin, Ramicane, Infubinol, and Ceftamin. Calculate the quartiles and IQR and quantitatively determine if there are any potential outliers across all four treatment regimens. Using Matplotlib, generate a box and whisker plot of the final tumor volume for all four treatment regimens and highlight any potential outliers in the plot by changing their color and style. [view solution](#06)
 
 * Select a mouse that was treated with Capomulin and generate a line plot of time point versus tumor volume for that mouse. [view solution](#07)
 
@@ -186,26 +184,6 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 
 ---
 
-<a name="05"></a>
-**Determine if there are any potential outliers across all four treatment regimens.**
-
-![remove duplicated data](images/steps/05.png)
-
-<details><summary>click here to view steps</summary>
-
-1. xxx
-    
-    ```
-    xxx
-    ```
-
-    [Back to output](#05)
-</details>
-
-[Back to tasks](#intro) or [Back to the top](#top) 
-
----
-
 <a name="06"></a>
 **Final tumor volume for all four treatment regimens and highlight any potential outliers (graph)**
 
@@ -213,10 +191,68 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 
 <details><summary>click here to view steps</summary>
 
-1. Identify the mice treated with Capomulin and select one
+1. Calculate the IQR and quantitatively determine if there are any potential outliers.
     
     ```
-    xxx
+    treatments = ["Capomulin", "Ramicane", "Infubinol", "Ceftamin"]
+
+    cap_tumor_vol = cap_regimen['Tumor Volume (mm3)']
+    ram_tumor_vol = ram_regimen['Tumor Volume (mm3)']
+    inf_tumor_vol = inf_regimen['Tumor Volume (mm3)']
+    cef_tumor_vol = cef_regimen['Tumor Volume (mm3)']
+
+    quartiles_cap = cap_tumor_vol.quantile([.25,.5,.75])
+    lowerq_cap = quartiles_cap[0.25]
+    upperq_cap = quartiles_cap[0.75]
+    iqr_cap = upperq_cap-lowerq_cap
+    lower_bound_cap = lowerq_cap - (1.5*iqr_cap)
+    upper_bound_cap = upperq_cap + (1.5*iqr_cap)
+
+    quartiles_ram = ram_tumor_vol.quantile([.25,.5,.75])
+    lowerq_ram = quartiles_ram[0.25]
+    upperq_ram = quartiles_ram[0.75]
+    iqr_ram = upperq_ram-lowerq_ram
+    lower_bound_ram = lowerq_ram - (1.5*iqr_ram)
+    upper_bound_ram = upperq_ram + (1.5*iqr_ram)
+
+    quartiles_inf = inf_tumor_vol.quantile([.25,.5,.75])
+    lowerq_inf = quartiles_inf[0.25]
+    upperq_inf = quartiles_inf[0.75]
+    iqr_inf = upperq_inf-lowerq_inf
+    lower_bound_inf = lowerq_inf - (1.5*iqr_inf)
+    upper_bound_inf = upperq_inf + (1.5*iqr_inf)
+
+    quartiles_cef = cef_tumor_vol.quantile([.25,.5,.75])
+    lowerq_cef = quartiles_cef[0.25]
+    upperq_cef = quartiles_cef[0.75]
+    iqr_cef = upperq_cef-lowerq_cef
+    lower_bound_cef = lowerq_cef - (1.5*iqr_cef)
+    upper_bound_cef = upperq_cef + (1.5*iqr_cef)
+
+    outlier_cap = cap_regimen.loc[(cap_regimen["Tumor Volume (mm3)"] < lower_bound_cap) | (cap_regimen["Tumor Volume (mm3)"] > upper_bound_cap)]
+
+    outlier_ram = ram_regimen.loc[(ram_regimen["Tumor Volume (mm3)"] < lower_bound_ram) | (ram_regimen["Tumor Volume (mm3)"] > upper_bound_ram)]
+
+    outlier_inf = inf_regimen.loc[(inf_regimen["Tumor Volume (mm3)"] < lower_bound_inf) | (inf_regimen["Tumor Volume (mm3)"] > upper_bound_inf)]
+
+    outlier_cef = cef_regimen.loc[(cef_regimen["Tumor Volume (mm3)"] < lower_bound_cef) | (cef_regimen["Tumor Volume (mm3)"] > upper_bound_cef)]
+
+    print(outlier_cap)
+    print(outlier_ram)
+    print(outlier_inf)
+    print(outlier_cef)
+
+2. Generate a box plot of the final tumor volume of each mouse across four regimens of interest
+
+    ```
+    tumor_data = [cap_tumor_vol, ram_tumor_vol, inf_tumor_vol, cef_tumor_vol]
+    purple_diamond = dict(markerfacecolor='purple', marker='D')
+    labels = treatments
+    plt.boxplot(tumor_data, flierprops=purple_diamond, labels=labels)
+    plt.title("Final Tumor Volume by Regimen")
+    plt.xlabel("Drug Regimens")
+    plt.ylabel("Tumor Volume (mm3)")
+    plt.show()
 
     ```
 
