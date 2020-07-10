@@ -124,3 +124,47 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 
 [Back to tasks](#intro) or [Back to the top](#top) 
 
+<a name="03"></a>
+**Number of total mice for each treatment regimen (graph)**
+
+![remove duplicated data](images/steps/03.png)
+
+<details><summary>click here to view steps</summary>
+
+1. Generate a bar plot showing the total number of mice for each treatment throughout the course of the study using pandas.
+    
+    ```
+    grp_mice_treatment = mouse_study_results.groupby(["Drug Regimen"])
+    mice_per_treatment = grp_mice_treatment[["Mouse ID"]].nunique()
+
+    mice_treat_plot = mice_per_treatment.plot(kind="bar", title="Number of Mice on Each Regimen", legend=False)
+    mice_treat_plot.set_ylabel("Number of Mice")
+    ```
+
+    [Back to output](#03)
+</details>
+
+[Back to tasks](#intro) or [Back to the top](#top) 
+
+<a name="04"></a>
+**Distribution of female or male mice in the study (graph)**
+
+![remove duplicated data](images/steps/04.png)
+
+<details><summary>click here to view steps</summary>
+
+1. Generate a pie plot showing the distribution of female versus male mice using pandas
+    
+    ```
+    grp_mice_gender = mouse_study_results.groupby(['Sex'])
+    mice_gender = grp_mice_gender[['Mouse ID']].count()
+
+    mice_gender_plot = mice_gender.plot(y='Mouse ID', kind='pie', autopct='%1.1f%%', title='Mice Gender Distribution', legend=False)
+    mice_gender_plot.set_ylabel('')
+    ```
+
+    [Back to output](#04)
+</details>
+
+[Back to tasks](#intro) or [Back to the top](#top) 
+
