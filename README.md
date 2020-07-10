@@ -36,12 +36,21 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 
 * Calculate the correlation coefficient and linear regression model between mouse weight and average tumor volume for the Capomulin treatment. Plot the linear regression model on top of the previous scatter plot. [view solution](#09)
 
-* Look across all previously generated figures and tables and write at least three observations or inferences that can be made from the data. Include these observations at the top of notebook. [view solution](#10)
+* Look across all previously generated figures and tables and write at least three observations or inferences that can be made from the data. Include these observations at the top of notebook.
 
 <a name="solution"></a>
 > **Solution**
 
 ---
+
+**Observations**
+
+1. There is a direct correlation between mouse weight and the average tumor volume for the Capomulin treatment, the heavier the mouse, data shows that tumors grow proportionally. 
+
+2. In some instances Capomulin causes tumor volume to dicrease, especially at the beggining to the treatment, despite this initiaal positive devemopment the tendency is continuous growth over time.  
+
+3. Ramicane seems to be a better medication, both the median and the standard deviation is low, when compared with other medications including Capomulin. 
+
 
 <a name="01"></a>
 **Remove mouse ID with duplicate time points**
@@ -315,19 +324,6 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 
     [Back to output](#09)
 </details>
-
-[Back to tasks](#intro) or [Back to the top](#top) 
-
----
-
-<a name="09"></a>
-**Observations**
-
-1. There is a direct correlation between mouse weight and the average tumor volume for the Capomulin treatment, the heavier the mouse, data shows that tumors grow proportionally. 
-
-2. In some instances Capomulin causes tumor volume to dicrease, especially at the beggining to the treatment, despite this initiaal positive devemopment the tendency is continuous growth over time.  
-
-3. Ramicane seems to be a better medication, both the median and the standard deviation is low, when compared with other medications including Capomulin. 
 
 [Back to tasks](#intro) or [Back to the top](#top) 
 
