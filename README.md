@@ -198,9 +198,30 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 ---
 
 <a name="06"></a>
-**Time point versus tumor volume for a mouse treated with Capomulin (graph)**
+**Final tumor volume for all four treatment regimens and highlight any potential outliers (graph)**
 
 ![remove duplicated data](images/steps/06.png)
+
+<details><summary>click here to view steps</summary>
+
+1. Identify the mice treated with Capomulin and select one
+    
+    ```
+    xxx
+
+    ```
+
+    [Back to output](#06)
+</details>
+
+[Back to tasks](#intro) or [Back to the top](#top) 
+
+---
+
+<a name="07"></a>
+**Time point versus tumor volume for a mouse treated with Capomulin (graph)**
+
+![remove duplicated data](images/steps/07.png)
 
 <details><summary>click here to view steps</summary>
 
@@ -223,7 +244,89 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
     plt.show()
     ```
 
-    [Back to output](#06)
+    [Back to output](#07)
+</details>
+
+[Back to tasks](#intro) or [Back to the top](#top) 
+
+---
+
+<a name="08"></a>
+**Scatter plot of mouse weight versus average tumor volume for the Capomulin treatment regimen (graph)**
+
+![remove duplicated data](images/steps/08.png)
+
+<details><summary>click here to view steps</summary>
+
+1. Capture average tumor size
+    
+    ```
+    grp_mice_avg_tumor = capomulin_treatment.groupby('Mouse ID').mean()
+    avg_tumor_size = grp_mice_avg_tumor['Tumor Volume (mm3)']
+
+    ```
+2. Capture average mouse weight
+
+    ```
+    grp_mice_weight = capomulin_treatment.groupby('Mouse ID').mean()
+    avg_mouse_weight = grp_mice_weight['Weight (g)']
+    ```
+3. Plot graph
+    ```
+    plt.scatter(avg_mouse_weight, avg_tumor_size, color='pink', marker='o')
+    plt.title('Avg. Tumor Volume per Mouse Compared to Avg. Weight')
+    plt.xlabel('Avg. Weight (g)')
+    plt.ylabel('Avg. Tumor Volume (mm3)')
+    plt.show()
+    ```
+
+    [Back to output](#08)
+</details>
+
+[Back to tasks](#intro) or [Back to the top](#top) 
+
+---
+
+<a name="09"></a>
+**Calculate the correlation coefficient and linear regression model between mouse weight and average tumor volume for the Capomulin treatment (graph)**
+
+![remove duplicated data](images/steps/09.png)
+
+<details><summary>click here to view code</summary>
+    
+    ```
+    cor_coeff = st.pearsonr(avg_mouse_weight,avg_tumor_size)[0]
+    (slope, intercept, rvalue, pvalue, stderr) = st.linregress(avg_mouse_weight, avg_tumor_size)
+    regress_values = []
+    for weight in avg_mouse_weight:
+        regress_values.append(weight * slope + intercept)
+    line_eq = "y = " + str(round(slope,2)) + "x + " + str(round(intercept,2))
+
+    plt.scatter(avg_mouse_weight, avg_tumor_size, color="pink", marker='o')
+    plt.plot(avg_mouse_weight,regress_values,"r-", color="purple")
+    plt.annotate(line_eq,(21,36),fontsize=12,color="purple")
+    plt.title("Avg. Tumor Volume per Mouse Compared to Avg. Weight")
+    plt.xlabel("Mouse Weight (g)")
+    plt.ylabel("Average Tumor Volume (mm3)")
+    plt.show()
+    print(f"The correlation coefficient is {cor_coeff}")
+
+    ```
+
+    [Back to output](#09)
+</details>
+
+[Back to tasks](#intro) or [Back to the top](#top) 
+
+---
+
+<a name="09"></a>
+**Observations**
+
+1. xxx
+2. xxx
+3. xxx
+
 </details>
 
 [Back to tasks](#intro) or [Back to the top](#top) 
