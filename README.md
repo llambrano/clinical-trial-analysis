@@ -90,7 +90,7 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 <a name="02"></a>
 **Summary statistics table**
 
-![remove duplicated data](images/steps/0.png)
+![remove duplicated data](images/steps/02.png)
 
 <details><summary>click here to view steps</summary>
 
