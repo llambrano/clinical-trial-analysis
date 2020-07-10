@@ -178,7 +178,7 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 ---
 
 <a name="05"></a>
-**Determine if there are any potential outliers across all four treatment regimens. (graph)**
+**Determine if there are any potential outliers across all four treatment regimens.**
 
 ![remove duplicated data](images/steps/05.png)
 
@@ -323,11 +323,11 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 <a name="09"></a>
 **Observations**
 
-1. xxx
-2. xxx
-3. xxx
+1. There is a direct correlation between mouse weight and the average tumor volume for the Capomulin treatment, the heavier the mouse, data shows that tumors grow proportionally. 
 
-</details>
+2. In some instances Capomulin causes tumor volume to dicrease, especially at the beggining to the treatment, despite this initiaal positive devemopment the tendency is continuous growth over time.  
+
+3. Ramicane seems to be a better medication, both the median and the standard deviation is low, when compared with other medications including Capomulin. 
 
 [Back to tasks](#intro) or [Back to the top](#top) 
 
