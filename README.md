@@ -82,10 +82,10 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
     mouse_study_results = mouse_study_results[~mouse_study_results['Mouse ID'].str.match('g989')]
     ```
 
-[Back to output](#01)
+    [Back to output](#01)
 </details>
 
-[Back to the tasks](#intro) or [Back to the top](#top) 
+[Back to tasks](#intro) or [Back to the top](#top) 
 
 <a name="02"></a>
 **Summary statistics table**
@@ -95,6 +95,7 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 <details><summary>click here to view steps</summary>
 
 1. Method 1 - creating multiple series and putting them all together at the end
+    
     ```
     mean = mouse_study_results.groupby('Drug Regimen')['Tumor Volume (mm3)'].mean()
     median = mouse_study_results.groupby('Drug Regimen')['Tumor Volume (mm3)'].median()
@@ -110,14 +111,16 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
                                         'std': standard_deviation, 
                                         'sem': SEM})
     ```
+
 2. Method 2 -  Generate a summary statistics table using a single groupby function
+    
     ```
     summary_statistics_2 = mouse_study_results.groupby('Drug Regimen').agg({'Tumor Volume (mm3)': ['mean', 'median', 'var', 'std', 'sem']})
     summary_statistics_2
     ```
 
-[Back to output](#02)
+    [Back to output](#02)
 </details>
 
-[Back to the tasks](#intro) or [Back to the top](#top) 
+[Back to tasks](#intro) or [Back to the top](#top) 
 
