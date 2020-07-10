@@ -88,43 +88,32 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 [Back to the tasks](#intro) or [Back to the top](#top) 
 
 <a name="02"></a>
-**Remove mouse ID with duplicate time points**
+**Summary statistics table**
 
-![remove duplicated data](images/steps/01.png)
+![remove duplicated data](images/steps/0.png)
 
 <details><summary>click here to view steps</summary>
 
-1. Import dependencies, read and combine CSV files
+1. Method 1 - creating multiple series and putting them all together at the end
+    ```
+    mean = mouse_study_results.groupby('Drug Regimen')['Tumor Volume (mm3)'].mean()
+    median = mouse_study_results.groupby('Drug Regimen')['Tumor Volume (mm3)'].median()
+    variance = mouse_study_results.groupby('Drug Regimen')['Tumor Volume (mm3)'].var()
+    standard_deviation = mouse_study_results.groupby('Drug Regimen')['Tumor Volume (mm3)'].std()
+    SEM = mouse_study_results.groupby('Drug Regimen')['Tumor Volume (mm3)'].sem()
 
-    ```
-    # Dependencies and Setup
-    import matplotlib.pyplot as plt
-    import pandas as pd
-    import scipy.stats as st
-    import numpy as np
+    # This method is the most straighforward, creating multiple series and putting them all together at the end.
 
-    # Study data files
-    mouse_metadata_path = '../data/Mouse_metadata.csv'
-    study_results_path = '../data/Study_results.csv'
-
-    # Read the mouse data and the study results
-    mouse_metadata = pd.read_csv(mouse_metadata_path)
-    study_results = pd.read_csv(study_results_path)
-
-    # Combine the data into a single dataset
-    mouse_study_results = study_results.merge(mouse_metadata, on = 'Mouse ID')
+    summary_statistics_1 = pd.DataFrame({'mean': mean,
+                                        'median': median, 
+                                        'var': variance, 
+                                        'std': standard_deviation, 
+                                        'sem': SEM})
     ```
-2. Get all the data for the duplicate mouse ID. 
+2. Method 2 -  Generate a summary statistics table using a single groupby function
     ```
-    mouse_id_dups = mouse_study_results[mouse_study_results[['Mouse ID', 'Timepoint']].duplicated() == True]
-    ```
-3. Create a clean DataFrame by dropping the duplicate mouse by its ID & Timepoint mix.
-    ```
-    mouse_study_results.drop_duplicates(subset=['Mouse ID', 'Timepoint'])
-    ```
-4. Removing the mouse with duplicated data completelly
-    ```
-    mouse_study_results = mouse_study_results[~mouse_study_results['Mouse ID'].str.match('g989')]
+    summary_statistics_2 = mouse_study_results.groupby('Drug Regimen').agg({'Tumor Volume (mm3)': ['mean', 'median', 'var', 'std', 'sem']})
+    summary_statistics_2
     ```
 
 [Back to output](#02)
