@@ -46,7 +46,7 @@ Using Python Matplotlib to analyze potential treatments for squamous cell carcin
 <a name="01_top"></a>
 **Remove mouse ID with duplicate time points**
 
-![School Summary](Images/steps/01.png)
+![remove duplicated data](images/steps/01.png)
 
 <details><summary>click here to view steps</summary>
 
